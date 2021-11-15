@@ -29,15 +29,17 @@ defmodule AuthPowWeb.Router do
   scope "/", AuthPowWeb do
     pipe_through :browser
 
-
     get "/", PageController, :index
-    resources "/articles", ArticleController
+    get "/articles", ArticleController, :index
+    get "/articles/:id", ArticleController, :show
+
   end
 
 
   scope "/", AuthPowWeb do
 
     pipe_through [:browser, :protected]
+    resources "/articles", ArticleController
 
   end
 

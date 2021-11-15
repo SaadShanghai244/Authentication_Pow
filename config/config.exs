@@ -19,7 +19,9 @@ config :auth_pow, AuthPowWeb.Endpoint,
 
 config :auth_pow, :pow,
   user: AuthPow.Users.User,
-  repo: AuthPow.Repo
+  repo: AuthPow.Repo,
+  web_module: AuthPowWeb
+
 
 # Configures the mailer
 #

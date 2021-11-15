@@ -49,4 +49,5 @@ defmodule AuthPowWeb.Endpoint do
   plug Pow.Plug.Session, otp_app: :auth_pow
   plug AuthPowWeb.Router
 
+
 end

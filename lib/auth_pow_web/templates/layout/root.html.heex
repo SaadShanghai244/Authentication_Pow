@@ -15,9 +15,13 @@
         <nav>
           <ul>
             <%= if Pow.Plug.current_user(@conn) do%>
-            <li><%= @current_user.email %>></li>
+            <li><%= @current_user.email %></li>
+            <li><%= link "Sign Out", to: Routes.pow_session_path(@conn, :delete), method: :delete%></li>
             <% else %>
             <li>User is not verified</li>
+            <li><%= link "Sign in", to: Routes.pow_session_path(@conn, :new)%></li>
+            <li><%= link "Register", to: Routes.pow_registration_path(@conn, :new)%></li>
+
             <% end %>
           </ul>
         </nav>

@@ -5,7 +5,9 @@ defmodule AuthPowWeb.ArticleController do
   alias AuthPow.Articles.Article
 
   def index(conn, _params) do
+    IO.inspect("Index+++++++")
     articles = Articles.list_articles()
+    IO.inspect Pow.Plug.current_user(conn)
     render(conn, "index.html", articles: articles)
   end
 
@@ -15,6 +17,7 @@ defmodule AuthPowWeb.ArticleController do
   end
 
   def create(conn, %{"article" => article_params}) do
+    article_params = Map.put(article_params,"user_id",Pow.Plug.current_user(conn).id)
     case Articles.create_article(article_params) do
       {:ok, article} ->
         conn
