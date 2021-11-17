@@ -7,17 +7,29 @@ defmodule AuthPowWeb.ArticleController do
   def index(conn, _params) do
     IO.inspect("Index+++++++")
     articles = Articles.list_articles()
+    IO.inspect(conn)
     IO.inspect Pow.Plug.current_user(conn)
     render(conn, "index.html", articles: articles)
   end
 
   def new(conn, _params) do
+    IO.inspect("+++++++++++++New+++++++++")
+    IO.inspect(conn)
+
     changeset = Articles.change_article(%Article{})
+    IO.inspect(changeset)
     render(conn, "new.html", changeset: changeset)
   end
+  # IO.inspect(Pow.Plug.current_user(conn).id)
 
   def create(conn, %{"article" => article_params}) do
+    IO.inspect("+++++++++++++Create+++++++++")
+    # IO.inspect(conn)
+    IO.inspect article_params
+    # Repo.get(User)
+    # IO.inspect(Pow.Plug.current_user(conn).id)
     article_params = Map.put(article_params,"user_id",Pow.Plug.current_user(conn).id)
+    IO.inspect(article_params)
     case Articles.create_article(article_params) do
       {:ok, article} ->
         conn
@@ -28,7 +40,6 @@ defmodule AuthPowWeb.ArticleController do
         render(conn, "new.html", changeset: changeset)
     end
   end
-
   def show(conn, %{"id" => id}) do
     article = Articles.get_article!(id)
     render(conn, "show.html", article: article)

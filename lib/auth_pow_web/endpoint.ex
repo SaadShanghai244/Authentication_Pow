@@ -43,6 +43,10 @@ defmodule AuthPowWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
+  socket "/socket", AuthPowWeb.UserSocket,
+    websocket: true,
+    longpoll: false
+
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options

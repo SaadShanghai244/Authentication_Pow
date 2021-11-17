@@ -7,6 +7,7 @@ defmodule AuthPow.Users.User do
     pow_user_fields()
 
     has_many :articles, Article
+    has_many :comments , AuthPow.Chats.Comment
     timestamps()
   end
 end

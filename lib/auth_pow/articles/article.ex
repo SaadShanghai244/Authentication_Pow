@@ -5,7 +5,9 @@ defmodule AuthPow.Articles.Article do
   schema "articles" do
     field :content, :string
     field :title, :string
+
     belongs_to :user, AuthPow.Users.User
+    has_many :comment, AuthPow.Chats.Comment
 
     timestamps()
   end

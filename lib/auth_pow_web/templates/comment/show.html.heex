@@ -1,0 +1,13 @@
+<h1>Show Comment</h1>
+
+<ul>
+
+  <li>
+    <strong>Message:</strong>
+    <%= @comment.message %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.article_comment_path(@conn, :edit, @comment.article_id, @comment.id) %></span> |
+<span><%= link "Back", to: Routes.article_comment_path(@conn, :index, @comment.article_id) %></span>
